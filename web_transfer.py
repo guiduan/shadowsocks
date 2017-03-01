@@ -54,9 +54,9 @@ class WebTransfer(object):
         for id in dt_transfer.keys():
             if dt_transfer[id][0] == 0 and dt_transfer[id][1] == 0:
                 continue
-            data.append({'u': dt_transfer[id][0], 'd': dt_transfer[id][1], 'user_id': self.port_uid_table[id]})
+            data.append({'ku': dt_transfer[id][0], 'kd': dt_transfer[id][1], 'user_id': self.port_uid_table[id]})
             update_transfer[id] = dt_transfer[id]
-        webapi.postApi('users/traffic',
+        webapi.postApi('users/traffick',
                        {'node_id': get_config().NODE_ID},
                        {'data': data})
 
@@ -219,7 +219,7 @@ class WebTransfer(object):
         else:
             self.is_relay = False
 
-        data = webapi.getApi('users', {'node_id': get_config().NODE_ID})
+        data = webapi.getApi('usersk', {'node_id': get_config().NODE_ID})
 
         if not data:
             rows = []
@@ -292,8 +292,8 @@ class WebTransfer(object):
                 continue
 
             md5_users[row['id']] = row.copy()
-            del md5_users[row['id']]['u']
-            del md5_users[row['id']]['d']
+            del md5_users[row['id']]['ku']
+            del md5_users[row['id']]['kd']
             if md5_users[row['id']]['disconnect_ip'] is None:
                 md5_users[row['id']]['disconnect_ip'] = ''
 
