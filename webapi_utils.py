@@ -19,7 +19,7 @@ class WebApi(object):
                 '%s/mod_mu/%s' %
                 (get_config().WEBAPI_URL, uri),
                 params=uri_params,
-                timeout=10).json()
+                timeout=120).json()
             if data['ret'] == 0:
                 logging.error("request %s error!wrong ret!"%(uri))
                 return []
@@ -41,7 +41,7 @@ class WebApi(object):
                  uri),
                 params=uri_params,
                 json=raw_data,
-                timeout=10).json()
+                timeout=120).json()
             if data['ret'] == 0:
                 logging.error("request %s error!wrong ret!"%(uri))
                 return []
